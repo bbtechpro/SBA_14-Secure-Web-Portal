@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="autocomplete" content="off" />
+  <title>Innovate Inc. - Secure Web Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="hero">
+      <div>
+        <h1>Innovate Inc. - Secure Web Portal</h1>
+        <p>Register, Log in (using either your email/password, a third-party provider like GitHub or an existing JWT), and manage a private collection of personal “bookmarks” (or notes, tasks, etc.).</p>
+      </div>
+      <div class="pill-group">
+        <button id="registerTab" class="pill active">Register</button>
+        <button id="loginTab" class="pill">Login</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <form id="registerForm" class="auth-form active" autocomplete="off" novalidate>
+        <h2>Create an account</h2>
+        <label>
+          Username
+          <input type="text" id="registerUsername" name="registerUsername" autocomplete="off" data-lpignore="true" data-1p-ignore required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="registerEmail" name="registerEmail" autocomplete="off" data-lpignore="true" data-1p-ignore required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="registerPassword" name="registerPassword" autocomplete="new-password" data-lpignore="true" data-1p-ignore required />
+        </label>
+        <button type="submit" class="btn primary">Register</button>
+        <button type="button" id="githubRegister" class="btn secondary">Register with GitHub</button>
+        <button type="button" id="useJwtRegister" class="btn tertiary">Use existing JWT</button>
+      </form>
+
+      <form id="loginForm" class="auth-form" autocomplete="off" novalidate>
+        <h2>Login</h2>
+        <label>
+          Email
+          <input type="email" id="loginEmail" name="loginEmail" autocomplete="off" data-lpignore="true" data-1p-ignore required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="loginPassword" name="loginPassword" autocomplete="current-password" data-lpignore="true" data-1p-ignore required />
+        </label>
+        <button type="submit" class="btn primary">Login</button>
+        <button type="button" id="githubLogin" class="btn secondary">Login with GitHub</button>
+        <button type="button" id="useJwtButton" class="btn tertiary">Use existing JWT</button>
+      </form>
+    </div>
+
+    <div class="actions">
+      <button id="fetchProfile" class="btn secondary">Get my profile</button>
+      <button id="logoutButton" class="btn secondary logout-button">Logout</button>
+    </div>
+
+    <div class="status-panel">
+      <div class="status-card">
+        <h3>Session status</h3>
+        <p id="statusText">Not signed in</p>
+      </div>
+      <div class="status-card message-card">
+        <h3>Message</h3>
+        <p id="messageText" class="message-text">No request made yet.</p>
+      </div>
+      <div class="status-card">
+        <h3>Response</h3>
+        <pre id="responseOutput">No request made yet.</pre>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
