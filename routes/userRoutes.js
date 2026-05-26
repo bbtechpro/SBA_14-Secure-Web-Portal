@@ -32,39 +32,6 @@ router.get('/me', authenticateToken, (req, res) => {
     return res.status(200).json({ success: true, data: req.user });
 });
 
-// POST create a new bookmark for the logged-in user
-router.post('/bookmarks', authenticateToken, async (req, res) => {
-    try {
-        const { title, url, notes } = req.body || {};
-        if (!title || typeof title !== 'string' || !title.trim()) {
-            return res.status(400).json({ success: false, message: 'Bookmark title is required.' });
-        }
-
-        const bookmark = await Bookmark.create({
-            title: title.trim(),
-            url: url ? url.trim() : undefined,
-            notes: notes ? notes.trim() : undefined,
-            user: req.user._id,
-        });
-
-        return res.status(201).json({ success: true, data: bookmark });
-    } catch (err) {
-        console.error('Error creating bookmark:', err);
-        return res.status(500).json({ success: false, message: 'Error creating bookmark' });
-    }
-});
-
-// GET bookmarks for the logged-in user
-router.get('/bookmarks', authenticateToken, async (req, res) => {
-    try {
-        const bookmarks = await Bookmark.find({ user: req.user._id }).sort({ createdAt: -1 });
-        return res.status(200).json({ success: true, data: bookmarks });
-    } catch (err) {
-        console.error('Error fetching bookmarks:', err);
-        return res.status(500).json({ success: false, message: 'Error fetching bookmarks' });
-    }
-});
-
 // GET all users from MongoDB
 router.get('/', async (req, res) => {
     try {
